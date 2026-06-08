@@ -3,10 +3,12 @@ function _init()
 end
 
 function _update()
-
+    _updatePlayerDir()
+    _movePlayer()
 end
 
 function _draw()
     cls()
-    circfill(63, 63, 6, 7)
+    circfill(playerPosX, playerPosY, 3, 4)
 end
+
