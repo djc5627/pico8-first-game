@@ -10,8 +10,8 @@ end
 
 function _draw()
     cls()
-    _draw_stars()
     rectfill(0, 0, 127, 127, 1)
+    _draw_stars()
     circfill(playerPosX, playerPosY, 3, 4)
 end
 
