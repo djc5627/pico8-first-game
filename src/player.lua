@@ -6,7 +6,7 @@ playerPosY = 63
 storedMoveX = 0.0
 storedMoveY = 0.0
 
-function _updatePlayerDir()
+function _update_player_dir()
     if btn(0) then
         playerDirX = -1
     elseif btn(1) then
@@ -24,7 +24,7 @@ function _updatePlayerDir()
     end
 end
 
-function _movePlayer()
+function _move_player()
     -- normalize diagonal movement so speed is constant
     local dx = playerDirX * 1.0
     local dy = playerDirY * 1.0
