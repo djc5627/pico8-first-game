@@ -34,8 +34,8 @@ function _move_player()
         -- sqrt(2) only works because the playerDirX and playerDirY are either -1, 0, or 1
         -- so the length of the vector (dx, dy) is always sqrt(2) when both are non-zero
         local inv = 1 / sqrt(2)
-        dx = dx * inv
-        dy = dy * inv
+        dx *= inv
+        dy *= inv
     end
 
     storedMoveX = storedMoveX + (dx * playerSpeed)

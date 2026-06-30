@@ -1,5 +1,17 @@
+---@diagnostic disable: undefined-global
 function _initStars()
-    stars = {star}
+    stars = {}
+
+    for i=1, 50 do
+        local star = star:new({
+            x = flr(rnd(128)),
+            y = flr(rnd(128)),
+            spd = rnd(1) + 0.5,
+            rad = flr(rnd(2)),
+            clr = 7
+        })
+        add(stars, star)
+    end
 end
 
 function _update_stars()
