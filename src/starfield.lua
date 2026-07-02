@@ -6,7 +6,8 @@ function _initStars()
         local star = star:new({
             x = flr(rnd(128)),
             y = flr(rnd(128)),
-            spd = rnd(1) + 0.5,
+            -- spd = rnd(10) + 0.5,
+            spd = rnd(.25) + 0.1,
             rad = flr(rnd(2)),
             clr = 7
         })

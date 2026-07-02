@@ -1,4 +1,5 @@
 playerSpeed = 2.0
+playerRadius = 3
 playerDirX = 1
 playerDirY = 1
 playerPosX = 63
@@ -46,4 +47,31 @@ function _move_player()
 
     storedMoveX = storedMoveX % 1
     storedMoveY = storedMoveY % 1
+end
+
+function _draw_player()
+    circfill(playerPosX, playerPosY, playerRadius, 4)
+end
+
+function _handle_collisions()
+    local t,nx,ny,tx,ty,intersect
+    for star in all(stars) do
+        t,nx,ny,tx,ty,intersect = hit(
+            star.x - star.rad,
+            star.y - star.rad,
+            star.rad * 2,
+            star.rad * 2,
+            playerPosX - playerRadius,
+            playerPosY - playerRadius,
+            playerRadius * 2,
+            playerRadius * 2,
+            star.x,
+            star.y
+        )
+        if intersect then
+            star.clr = 8
+        else
+            star.clr = 7
+        end
+    end
 end
