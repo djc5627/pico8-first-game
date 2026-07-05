@@ -3,14 +3,6 @@ star = entity:new({
     rad = 0,
     clr = 13,
 
-    new = function(self, tbl)
-        tbl = tbl or {}
-        setmetatable(tbl, {
-            __index=self
-        })
-        return tbl
-    end,
-
     update = function(_ENV)
         y += spd
         if y > 127 then
@@ -20,12 +12,7 @@ star = entity:new({
     end,
 
     draw = function(_ENV)
-        circfill(
-            x,
-            y,
-            rad,
-            clr
-        )
+        circfill(x,y,rad,clr)
     end
 })
 

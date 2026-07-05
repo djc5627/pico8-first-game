@@ -55,7 +55,7 @@ function _draw_player()
     spr(0, playerPosX, playerPosY, 1, 1, false, false)
 end
 
-function _handle_collisions()
+function _handle_player_collisions()
     local t,nx,ny,tx,ty,intersect
     for star in all(stars) do
         t,nx,ny,tx,ty,intersect = hit(

@@ -1,5 +1,5 @@
 ---@diagnostic disable: undefined-global
-function _initStars()
+function _init_stars()
     stars = {}
     star_types = {star, far_star, near_star}
 
