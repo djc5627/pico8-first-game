@@ -1,4 +1,6 @@
-class = {
+global = _ENV
+
+class = setmetatable({
     new = function(self, tbl)
         tbl = tbl or {}
         setmetatable(tbl, {
@@ -6,7 +8,7 @@ class = {
         })
         return tbl
     end
-}
+}, {__index=_ENV})
 
 entity = class:new({
     x = 0,

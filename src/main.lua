@@ -1,5 +1,6 @@
 function _init()
     _initStars()
+    score = 0
 end
 
 function _update()
@@ -14,5 +15,7 @@ function _draw()
     rectfill(0, 0, 127, 127, 1)
     _draw_stars()
     _draw_player()
+
+    print("score: "..global.score, 8, 8, 7)
 end
 

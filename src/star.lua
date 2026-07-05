@@ -11,19 +11,20 @@ star = entity:new({
         return tbl
     end,
 
-    update = function(self)
-        self.y += self.spd
-        if self.y > 127 then
-            self.y = -self.rad
+    update = function(_ENV)
+        y += spd
+        if y > 127 then
+            y = -rad
+            global.score += 1
         end
     end,
 
-    draw = function(self)
+    draw = function(_ENV)
         circfill(
-            self.x,
-            self.y,
-            self.rad,
-            self.clr
+            x,
+            y,
+            rad,
+            clr
         )
     end
 })
