@@ -7,7 +7,9 @@ PORT="22"                                # Default SFTP port is 22
 LOCAL_FILE="./firstgame.p8.png"     # File on your local machine
 REMOTE_DIR="/mnt/SDCARD/Roms/PICO/mine"      # Target folder on the SFTP server
 
-# --- EXECUTION ---
+# --- Export Game ---
+pico8 ./first_game.p8 -export firstgame.p8.png
+
 echo "Starting SFTP transfer..."
 
 # Run SFTP in batch mode (-b) using standard input redirection (<<EOF)

@@ -7,9 +7,8 @@ function _initStars()
             x = flr(rnd(128)),
             y = flr(rnd(128)),
             -- spd = rnd(10) + 0.5,
-            spd = rnd(.25) + 0.1,
+            spd = rnd(5) + 0.1,
             rad = flr(rnd(2)),
-            clr = 7
         })
         add(stars, star)
     end
