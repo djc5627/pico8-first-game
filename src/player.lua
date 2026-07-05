@@ -68,10 +68,5 @@ function _handle_collisions()
             star.x,
             star.y
         )
-        if intersect then
-            star.clr = 8
-        else
-            star.clr = 7
-        end
     end
 end
