@@ -1,5 +1,6 @@
 playerSpeed = 2.0
-playerRadius = 3
+playerWidth = 8
+playerHeight = 8
 playerDirX = 1
 playerDirY = 1
 playerPosX = 63
@@ -50,7 +51,8 @@ function _move_player()
 end
 
 function _draw_player()
-    circfill(playerPosX, playerPosY, playerRadius, 4)
+    -- circfill(playerPosX, playerPosY, playerRadius, 4)
+    spr(0, playerPosX, playerPosY, 1, 1, false, false)
 end
 
 function _handle_collisions()
@@ -61,10 +63,10 @@ function _handle_collisions()
             star.y - star.rad,
             star.rad * 2,
             star.rad * 2,
-            playerPosX - playerRadius,
-            playerPosY - playerRadius,
-            playerRadius * 2,
-            playerRadius * 2,
+            playerPosX,
+            playerPosY,
+            playerWidth,
+            playerHeight,
             star.x,
             star.y
         )

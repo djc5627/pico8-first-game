@@ -37,7 +37,7 @@ far_star = star:new({
 
 near_star = star:new({
     spd = .74,
-    rad = 1,
+    rad = 0,
     clr = 7,
 
     new = function(self, tbl)
