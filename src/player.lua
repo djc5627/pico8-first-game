@@ -68,6 +68,7 @@ function _shoot()
         })
         add(bullets, new_bullet)
         playerLastShootTime = time()
+        sfx(1)
      end
 end
 

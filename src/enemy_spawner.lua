@@ -25,6 +25,7 @@ function _update_enemy_spawner()
         if enemy.health <= 0 then
             del(enemy_spawner.enemies, enemy)
             global.score += 1
+            sfx(0)
         end
     end
 end
