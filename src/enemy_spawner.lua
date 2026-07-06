@@ -21,6 +21,11 @@ function _update_enemy_spawner()
     -- Update existing enemies
     for enemy in all(enemy_spawner.enemies) do
         enemy:update()
+
+        if enemy.health <= 0 then
+            del(enemy_spawner.enemies, enemy)
+            global.score += 1
+        end
     end
 end
 

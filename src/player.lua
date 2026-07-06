@@ -7,6 +7,12 @@ playerPosX = 63
 playerPosY = 63
 storedMoveX = 0.0
 storedMoveY = 0.0
+playerShootDelay = 0.2
+playerLastShootTime = 0
+
+function _init_player()
+    bullets = {}
+end
 
 function _update_player_dir()
     if btn(0) then
@@ -50,9 +56,40 @@ function _move_player()
     storedMoveY = storedMoveY % 1
 end
 
+function _shoot()
+    -- Only shoot if delay has passed since the last shot
+    if btn(4) and time() - playerLastShootTime >= playerShootDelay then
+        -- Create a new bullet.lua entity and add it to the bullets table
+        local new_bullet = bullet:new({
+            x = playerPosX + playerWidth / 2,
+            y = playerPosY,
+            dirX = 0,
+            dirY = -1,
+        })
+        add(bullets, new_bullet)
+        playerLastShootTime = time()
+     end
+end
+
+function _update_player()
+    _update_player_dir()
+    _move_player()
+    _shoot()
+    _handle_player_collisions()
+
+    -- Update bullets
+    for bullet in all(bullets) do
+        bullet:update()
+    end
+end
+
 function _draw_player()
-    -- circfill(playerPosX, playerPosY, playerRadius, 4)
     spr(0, playerPosX, playerPosY, 1, 1, false, false)
+
+    -- Draw bullets
+    for bullet in all(bullets) do
+        bullet:draw()
+    end
 end
 
 function _handle_player_collisions()

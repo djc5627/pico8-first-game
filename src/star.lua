@@ -7,7 +7,6 @@ star = entity:new({
         y += spd
         if y > 127 then
             y = -rad
-            global.score += 1
         end
     end,
 
