@@ -9,9 +9,12 @@ storedMoveX = 0.0
 storedMoveY = 0.0
 playerShootDelay = 0.2
 playerLastShootTime = 0
+playerHealth = 3
 
 function _init_player()
-    bullets = {}
+    playerHealth = 3
+    playerPosX = 63
+    playerPosY = 63
 end
 
 function _update_player_dir()
@@ -77,36 +80,42 @@ function _update_player()
     _move_player()
     _shoot()
     _handle_player_collisions()
-
-    -- Update bullets
-    for bullet in all(bullets) do
-        bullet:update()
-    end
+    _handle_player_death()
 end
 
 function _draw_player()
     spr(0, playerPosX, playerPosY, 1, 1, false, false)
+    print("health: "..playerHealth, 8, 12, 7)
+end
 
-    -- Draw bullets
-    for bullet in all(bullets) do
-        bullet:draw()
+function _handle_player_death()
+    if playerHealth <= 0 then
+        state = "game_over"
+        sfx(2)
     end
 end
 
 function _handle_player_collisions()
     local t,nx,ny,tx,ty,intersect
-    for star in all(stars) do
+    for bullet in all(bullets) do
+        if bullet.friendly then
+            break
+        end
         t,nx,ny,tx,ty,intersect = hit(
-            star.x - star.rad,
-            star.y - star.rad,
-            star.rad * 2,
-            star.rad * 2,
+            bullet.x - bullet.rad,
+            bullet.y - bullet.rad,
+            bullet.rad * 2,
+            bullet.rad * 2,
             playerPosX,
             playerPosY,
             playerWidth,
             playerHeight,
-            star.x,
-            star.y
+            bullet.x - bullet.rad,
+            bullet.y - bullet.rad
         )
+        if intersect then
+            del(bullets, bullet)
+            playerHealth -= 1
+        end
     end
 end

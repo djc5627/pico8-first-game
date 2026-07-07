@@ -2,7 +2,7 @@ function _init_enemy_spawner()
     -- Initialize enemy spawner properties
     enemy_spawner = {
         spawn_rate = 2, -- seconds between spawns
-        last_spawn_time = 0,
+        last_spawn_time = time(),
         enemies = {}
     }
 end
