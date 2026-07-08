@@ -3,16 +3,18 @@ function _init_enemy_spawner()
     enemy_spawner = {
         spawn_rate = 2, -- seconds between spawns
         last_spawn_time = time(),
-        enemies = {}
+        enemies = {},
+        max_enemies = 10
     }
 end
 
 function _update_enemy_spawner()
     -- Check if it's time to spawn a new enemy
-    if time() - enemy_spawner.last_spawn_time >= enemy_spawner.spawn_rate then
+    if #enemy_spawner.enemies < enemy_spawner.max_enemies and
+        time() - enemy_spawner.last_spawn_time >= enemy_spawner.spawn_rate then
         local new_enemy = enemy:new({
             x = flr(rnd(128)),
-            y = flr(rnd(20)),
+            y = flr(rnd(20)) + 20,
         })
         add(enemy_spawner.enemies, new_enemy)
         enemy_spawner.last_spawn_time = time()

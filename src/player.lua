@@ -3,13 +3,11 @@ playerWidth = 8
 playerHeight = 8
 playerDirX = 1
 playerDirY = 1
-playerPosX = 63
-playerPosY = 63
 storedMoveX = 0.0
 storedMoveY = 0.0
 playerShootDelay = 0.2
 playerLastShootTime = 0
-playerHealth = 3
+
 
 function _init_player()
     playerHealth = 3
@@ -98,24 +96,23 @@ end
 function _handle_player_collisions()
     local t,nx,ny,tx,ty,intersect
     for bullet in all(bullets) do
-        if bullet.friendly then
-            break
-        end
-        t,nx,ny,tx,ty,intersect = hit(
-            bullet.x - bullet.rad,
-            bullet.y - bullet.rad,
-            bullet.rad * 2,
-            bullet.rad * 2,
-            playerPosX,
-            playerPosY,
-            playerWidth,
-            playerHeight,
-            bullet.x - bullet.rad,
-            bullet.y - bullet.rad
-        )
-        if intersect then
-            del(bullets, bullet)
-            playerHealth -= 1
+        if not bullet.friendly then
+            t,nx,ny,tx,ty,intersect = hit(
+                bullet.x - bullet.rad,
+                bullet.y - bullet.rad,
+                bullet.rad * 2,
+                bullet.rad * 2,
+                playerPosX,
+                playerPosY,
+                playerWidth,
+                playerHeight,
+                bullet.x - bullet.rad + bullet.dirX * bullet.spd,
+                bullet.y - bullet.rad + bullet.dirY * bullet.spd
+            )
+            if intersect then
+                del(bullets, bullet)
+                playerHealth -= 1
+            end
         end
     end
 end

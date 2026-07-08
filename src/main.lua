@@ -1,6 +1,6 @@
 game_states = {"playing", "game_over"}
 state = "playing"
-debug = true
+debug = false
 
 
 function _init()
@@ -31,8 +31,8 @@ function _draw()
     cls()
 
     if state == "game_over" then
-        print("game over", 40, 60, 7)
-        print("press o/x to restart", 20, 70, 7)
+        print("game over", 45, 40, 7)
+        print("press o/x to restart", 25, 50, 7)
         return
     end
 

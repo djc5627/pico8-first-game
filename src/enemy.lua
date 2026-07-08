@@ -35,24 +35,23 @@ enemy = entity:new({
     handle_collisions = function(_ENV)
         local t,nx,ny,tx,ty,intersect
         for bullet in all(bullets) do
-            if not bullet.friendly then
-                break
-            end
-            t,nx,ny,tx,ty,intersect = hit(
-                bullet.x - bullet.rad,
-                bullet.y - bullet.rad,
-                bullet.rad * 2,
-                bullet.rad * 2,
-                x,
-                y,
-                width,
-                width,
-                bullet.x - bullet.rad + bullet.dirX * bullet.spd,
-                bullet.y - bullet.rad + bullet.dirY * bullet.spd
-            )
-            if intersect == true or intersect == false then
-                del(bullets, bullet)
-                health -= 1
+            if bullet.friendly then
+                t,nx,ny,tx,ty,intersect = hit(
+                    bullet.x - bullet.rad,
+                    bullet.y - bullet.rad,
+                    bullet.rad * 2,
+                    bullet.rad * 2,
+                    x,
+                    y,
+                    width,
+                    width,
+                    bullet.x - bullet.rad + bullet.dirX * bullet.spd,
+                    bullet.y - bullet.rad + bullet.dirY * bullet.spd
+                )
+                if intersect == true or intersect == false then
+                    del(bullets, bullet)
+                    health -= 1
+                end
             end
         end
     end
