@@ -58,8 +58,11 @@ function _draw()
     _draw_bullets()
 
     print("score: "..score, 8, 4, 7)
-    print(btn(), 8, 128-8*3, 7)
-    print(btn()&0b1111, 8, 128-8*2, 7)
-    print(butarr[btn()&0b1111], 8, 128-8*1, 7)
+
+    if debug then
+        print(btn(), 8, 128-8*3, 7)
+        print(btn()&0b1111, 8, 128-8*2, 7)
+        print(butarr[btn()&0b1111], 8, 128-8*1, 7)
+    end
 end
 
