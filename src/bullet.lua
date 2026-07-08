@@ -1,14 +1,14 @@
 bullet = entity:new({
     spd = 1.4,
-    dirX = 0,
-    dirY = -1,
+    dirx = 0,
+    diry = -1,
     rad = 1,
     clr = 10,
     friendly = true,
 
     update = function(_ENV)
-        x += spd * dirX
-        y += spd * dirY
+        x += spd * dirx
+        y += spd * diry
     end,
 
     draw = function(_ENV)
@@ -19,7 +19,7 @@ bullet = entity:new({
 enmy_bullet = bullet:new({
     friendly = false,
     clr = 8,
-    dirY = 1
+    diry = 1
 })
 
 function _update_bullets()

@@ -34,48 +34,49 @@ butarr[0]=0
 dirx={-1,1,0,0,-0.75,0.75,0.75,-0.75}
 diry={0,0,-1,1,-0.75,-0.75,0.75,0.75}
 
-playerSpeed = 1.4
-playerWidth = 8
-playerHeight = 8
-playerShootDelay = 0.2
-playerLastShootTime = 0
-playerLastDir = 0
+p_speed = 1.4
+p_width = 8
+p_height = 8
+p_shoot_delay = 0.2
+p_last_shoot_time = 0
+p_last_dir = 0
 
 
 function _init_player()
-    playerHealth = 3
-    playerPosX = 63
-    playerPosY = 63
-    playerLastDir = 0
+    p_health = 3
+    p_x = 63
+    p_y = 63
+    p_last_dir = 0
 end
 
 function _move_player()
+    -- Bitwise & to strip out the o/x inputs
     local dir = butarr[btn()&0b1111]
 
-    if playerLastDir!=dir and dir>=5 then
+    if p_last_dir!=dir and dir>=5 then
         --Anti-cobblestone on diagonals
-        playerPosX = flr(playerPosX) + 0.5
-        playerPosY = flr(playerPosY) + 0.5
+        p_x = flr(p_x) + 0.5
+        p_y = flr(p_y) + 0.5
     end
 
     if dir > 0 then
-        playerPosX += dirx[dir]*playerSpeed
-        playerPosY += diry[dir]*playerSpeed
+        p_x += dirx[dir]*p_speed
+        p_y += diry[dir]*p_speed
     end
 end
 
 function _shoot()
     -- Only shoot if delay has passed since the last shot
-    if btn(4) and time() - playerLastShootTime >= playerShootDelay then
+    if btn(4) and time() - p_last_shoot_time >= p_shoot_delay then
         -- Create a new bullet.lua entity and add it to the bullets table
         local new_bullet = bullet:new({
-            x = playerPosX + playerWidth / 2,
-            y = playerPosY,
-            dirX = 0,
-            dirY = -1,
+            x = p_x + p_width / 2,
+            y = p_y,
+            dirx = 0,
+            diry = -1,
         })
         add(bullets, new_bullet)
-        playerLastShootTime = time()
+        p_last_shoot_time = time()
         sfx(1)
      end
 end
@@ -88,12 +89,12 @@ function _update_player()
 end
 
 function _draw_player()
-    spr(0, playerPosX, playerPosY, 1, 1, false, false)
-    print("health: "..playerHealth, 8, 12, 7)
+    spr(0, p_x, p_y, 1, 1, false, false)
+    print("health: "..p_health, 8, 12, 7)
 end
 
 function _handle_player_death()
-    if playerHealth <= 0 then
+    if p_health <= 0 then
         state = "game_over"
         sfx(2)
     end
@@ -108,16 +109,16 @@ function _handle_player_collisions()
                 bullet.y - bullet.rad,
                 bullet.rad * 2,
                 bullet.rad * 2,
-                playerPosX,
-                playerPosY,
-                playerWidth,
-                playerHeight,
-                bullet.x - bullet.rad + bullet.dirX * bullet.spd,
-                bullet.y - bullet.rad + bullet.dirY * bullet.spd
+                p_x,
+                p_y,
+                p_width,
+                p_height,
+                bullet.x - bullet.rad + bullet.dirx * bullet.spd,
+                bullet.y - bullet.rad + bullet.diry * bullet.spd
             )
             if intersect then
                 del(bullets, bullet)
-                playerHealth -= 1
+                p_health -= 1
             end
         end
     end

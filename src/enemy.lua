@@ -1,8 +1,8 @@
 enemy = entity:new({
     health = 3,
     width = 8,
-    shootDelay = 3,
-    lastShootTime = 0,
+    shoot_delay = 3,
+    last_shoot_time = 0,
 
     update = function(_ENV)
         handle_collisions(_ENV)
@@ -20,13 +20,13 @@ enemy = entity:new({
     end,
 
     shoot = function(_ENV)
-        if time() - lastShootTime > shootDelay then
-            lastShootTime = time()
+        if time() - last_shoot_time > shoot_delay then
+            last_shoot_time = time()
             local b = enmy_bullet:new({
                 x = x + width/2,
                 y = y + width,
-                dirX = 0,
-                dirY = 1
+                dirx = 0,
+                diry = 1
             })
             add(bullets, b)
         end
@@ -45,8 +45,8 @@ enemy = entity:new({
                     y,
                     width,
                     width,
-                    bullet.x - bullet.rad + bullet.dirX * bullet.spd,
-                    bullet.y - bullet.rad + bullet.dirY * bullet.spd
+                    bullet.x - bullet.rad + bullet.dirx * bullet.spd,
+                    bullet.y - bullet.rad + bullet.diry * bullet.spd
                 )
                 if intersect == true or intersect == false then
                     del(bullets, bullet)
