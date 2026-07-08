@@ -1,3 +1,11 @@
+--- TODO
+-- [] Minimize hit.lua to ignore hit direction
+-- [] Fix cobblestoning on player (enemies too?)
+-- [] Move code to update60 for 60fps (adjust speeds)
+
+-- Working
+-- [] Move to new input system
+
 game_states = {"playing", "game_over"}
 state = "playing"
 debug = false
@@ -43,5 +51,8 @@ function _draw()
     _draw_bullets()
 
     print("score: "..score, 8, 4, 7)
+    print(btn(), 8, 128-8*3, 7)
+    print(btn()&0b1111, 8, 128-8*2, 7)
+    print(butarr[btn()&0b1111], 8, 128-8*1, 7)
 end
 

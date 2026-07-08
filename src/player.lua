@@ -1,12 +1,47 @@
-playerSpeed = 2.0
+----- btn() values for given inputs
+-- Note: Must bitwise &001111 to remove the x/o button bits
+-- 0 - stop
+-- 1 - left
+-- 2 - right
+-- 3 - l+r = stop
+-- 4 - up
+-- 5 - diag L/U
+-- 6 - diag R/U
+-- 7 - l+u+r = up
+-- 8 - down
+-- 9 - diag L/D
+-- 10 - diag R/D
+-- 11 - l+d+r = d
+-- 12 - u+d = stop
+-- 13 - l+u+d = left
+-- 14 - r+u+d = r
+-- 15 - l+u+r+d = stop
+
+----- Output of our conversion
+-- 0 - no buttons pressed
+-- 1 - left
+-- 2 - right
+-- 3 - up
+-- 4 - down
+
+-- 5 - left/up
+-- 6 - right/up
+-- 7 - right/down
+-- 8 - left/down
+
+butarr={1,2,0,3,5,6,3,4,8,7,4,0,1,2,0}
+butarr[0]=0
+dirx={-1,1,0,0,-1,1,1,-1}
+diry={0,0,-1,1,-1,-1,1,1}
+
+playerSpeed = 2
 playerWidth = 8
 playerHeight = 8
-playerDirX = 1
-playerDirY = 1
 storedMoveX = 0.0
 storedMoveY = 0.0
 playerShootDelay = 0.2
 playerLastShootTime = 0
+playerLastDir = {0, 0}
 
 
 function _init_player()
@@ -15,25 +50,13 @@ function _init_player()
     playerPosY = 63
 end
 
-function _update_player_dir()
-    if btn(0) then
-        playerDirX = -1
-    elseif btn(1) then
-        playerDirX = 1
-    else
-        playerDirX = 0
-    end
-
-    if btn(2) then
-        playerDirY = 1
-    elseif btn(3) then
-        playerDirY = -1
-    else
-        playerDirY = 0
-    end
-end
-
 function _move_player()
+    local dir = butarr[btn()&0b1111]
+    if dir > 0 then
+        playerPosX += dirx[dir]*playerSpeed
+        playerPosY += diry[dir]*playerSpeed
+    end
+--[[
     -- normalize diagonal movement so speed is constant
     local dx = playerDirX * 1.0
     local dy = playerDirY * 1.0
@@ -55,6 +78,16 @@ function _move_player()
 
     storedMoveX = storedMoveX % 1
     storedMoveY = storedMoveY % 1
+
+    printh("playerLastDir: "..playerLastDir[1]..","..playerLastDir[2].."currentDir: "..playerDirX..","..playerDirY)
+    printh(playerLastDir != {playerDirX,playerDirY})
+    if playerLastDir != {playerDirX,playerDirY} and dx ~= 0 and dy ~= 0 then
+        playerPosX = flr(playerPosX) + 0.5
+        playerPosY = flr(playerPosY) + 0.5
+    end
+
+    playerLastDir = {playerDirX,playerDirY}
+    --]]
 end
 
 function _shoot()
@@ -74,7 +107,6 @@ function _shoot()
 end
 
 function _update_player()
-    _update_player_dir()
     _move_player()
     _shoot()
     _handle_player_collisions()
