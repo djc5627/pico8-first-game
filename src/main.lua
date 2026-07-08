@@ -1,10 +1,17 @@
 --- TODO
 -- [] Minimize hit.lua to ignore hit direction
--- [] Fix cobblestoning on player (enemies too?)
--- [] Move code to update60 for 60fps (adjust speeds)
+-- [] Rename vars to match casing conventions
+-- [] Smooth out cardinal direction movement
 
--- Working
--- [] Move to new input system
+--- Working
+-- [] Banking
+
+--- Done
+-- [X] Move to new input system
+-- [X] Fix cobblestoning on player (enemies too?)
+-- [X] Normalize diagonals movement
+-- [X] Move code to update60 for 60fps (adjust speeds)
+-- [X] Pick a good movement speed
 
 game_states = {"playing", "game_over"}
 state = "playing"
@@ -19,7 +26,7 @@ function _init()
     bullets = {}
 end
 
-function _update()
+function _update60()
     -- Restart Game when over
     if state == "game_over" then
         if btnp(4) or btnp(5) then

@@ -1,5 +1,5 @@
 bullet = entity:new({
-    spd = 3,
+    spd = 1.4,
     dirX = 0,
     dirY = -1,
     rad = 1,

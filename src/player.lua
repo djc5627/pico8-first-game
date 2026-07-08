@@ -31,63 +31,37 @@
 
 butarr={1,2,0,3,5,6,3,4,8,7,4,0,1,2,0}
 butarr[0]=0
-dirx={-1,1,0,0,-1,1,1,-1}
-diry={0,0,-1,1,-1,-1,1,1}
+dirx={-1,1,0,0,-0.75,0.75,0.75,-0.75}
+diry={0,0,-1,1,-0.75,-0.75,0.75,0.75}
 
-playerSpeed = 2
+playerSpeed = 1.4
 playerWidth = 8
 playerHeight = 8
-storedMoveX = 0.0
-storedMoveY = 0.0
 playerShootDelay = 0.2
 playerLastShootTime = 0
-playerLastDir = {0, 0}
+playerLastDir = 0
 
 
 function _init_player()
     playerHealth = 3
     playerPosX = 63
     playerPosY = 63
+    playerLastDir = 0
 end
 
 function _move_player()
     local dir = butarr[btn()&0b1111]
-    if dir > 0 then
-        playerPosX += dirx[dir]*playerSpeed
-        playerPosY += diry[dir]*playerSpeed
-    end
---[[
-    -- normalize diagonal movement so speed is constant
-    local dx = playerDirX * 1.0
-    local dy = playerDirY * 1.0
 
-    if dx ~= 0 and dy ~= 0 then
-        -- when moving diagonally, divide by sqrt(2) to keep total speed equal
-        -- sqrt(2) only works because the playerDirX and playerDirY are either -1, 0, or 1
-        -- so the length of the vector (dx, dy) is always sqrt(2) when both are non-zero
-        local inv = 1 / sqrt(2)
-        dx *= inv
-        dy *= inv
-    end
-
-    storedMoveX = storedMoveX + (dx * playerSpeed)
-    storedMoveY = storedMoveY + (-dy * playerSpeed)
-
-    playerPosX += flr(storedMoveX)
-    playerPosY += flr(storedMoveY)
-
-    storedMoveX = storedMoveX % 1
-    storedMoveY = storedMoveY % 1
-
-    printh("playerLastDir: "..playerLastDir[1]..","..playerLastDir[2].."currentDir: "..playerDirX..","..playerDirY)
-    printh(playerLastDir != {playerDirX,playerDirY})
-    if playerLastDir != {playerDirX,playerDirY} and dx ~= 0 and dy ~= 0 then
+    if playerLastDir!=dir and dir>=5 then
+        --Anti-cobblestone on diagonals
         playerPosX = flr(playerPosX) + 0.5
         playerPosY = flr(playerPosY) + 0.5
     end
 
-    playerLastDir = {playerDirX,playerDirY}
-    --]]
+    if dir > 0 then
+        playerPosX += dirx[dir]*playerSpeed
+        playerPosY += diry[dir]*playerSpeed
+    end
 end
 
 function _shoot()
