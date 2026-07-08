@@ -33,10 +33,10 @@ enemy = entity:new({
     end,
 
     handle_collisions = function(_ENV)
-        local t,nx,ny,tx,ty,intersect
         for bullet in all(bullets) do
+            local collided = false
             if bullet.friendly then
-                t,nx,ny,tx,ty,intersect = hit(
+                collided = hit(
                     bullet.x - bullet.rad,
                     bullet.y - bullet.rad,
                     bullet.rad * 2,
@@ -48,7 +48,7 @@ enemy = entity:new({
                     bullet.x - bullet.rad + bullet.dirx * bullet.spd,
                     bullet.y - bullet.rad + bullet.diry * bullet.spd
                 )
-                if intersect == true or intersect == false then
+                if collided then
                     del(bullets, bullet)
                     health -= 1
                 end

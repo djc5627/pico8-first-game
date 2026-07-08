@@ -1,6 +1,4 @@
 --- TODO
--- [] Minimize hit.lua to ignore hit direction
--- [] Rename vars to match casing conventions
 -- [] Smooth out cardinal direction movement
 
 --- Working
@@ -12,6 +10,8 @@
 -- [X] Normalize diagonals movement
 -- [X] Move code to update60 for 60fps (adjust speeds)
 -- [X] Pick a good movement speed
+-- [X] Rename vars to match casing conventions
+-- [X] Minimize hit.lua to ignore hit direction
 
 game_states = {"playing", "game_over"}
 state = "playing"

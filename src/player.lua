@@ -101,10 +101,10 @@ function _handle_player_death()
 end
 
 function _handle_player_collisions()
-    local t,nx,ny,tx,ty,intersect
     for bullet in all(bullets) do
+        local collided = false
         if not bullet.friendly then
-            t,nx,ny,tx,ty,intersect = hit(
+            collided = hit(
                 bullet.x - bullet.rad,
                 bullet.y - bullet.rad,
                 bullet.rad * 2,
@@ -116,7 +116,7 @@ function _handle_player_collisions()
                 bullet.x - bullet.rad + bullet.dirx * bullet.spd,
                 bullet.y - bullet.rad + bullet.diry * bullet.spd
             )
-            if intersect then
+            if collided then
                 del(bullets, bullet)
                 p_health -= 1
             end
