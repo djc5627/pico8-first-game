@@ -20,6 +20,8 @@ Add the PICO-8 install directory to your path so IntelliJ run configurations can
 
 ### Run
 ```pico8 -run ./first_game.p8```
+For linux might need to use the following:
+```pico8_dyn -run ./first_game.p8```
 
 ### Export
 ```pico8 ./first_game.p8 -export firstgame.p8.png```
