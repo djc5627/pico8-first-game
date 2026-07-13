@@ -58,11 +58,22 @@ function _draw()
         return
     end
 
+    ----- Draw background
     rectfill(0, 0, 127, 127, 1)
+
+    ----- Draw Sprites
+    -- Set blue as transparent
+    palt(0, false)
+    palt(1, true)
+
     _draw_stars()
     _draw_player()
     _draw_enemy_spawner()
     _draw_bullets()
+
+    -- Set black as transparent
+    palt(0, true)
+    palt(1, false)
 
     print("score: "..score, 8, 4, 7)
 
