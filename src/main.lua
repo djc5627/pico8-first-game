@@ -4,6 +4,10 @@
 -- [] Enemy types (straight, zig-zag, homing)
   -- [] Enemy movement defined by speed and angle
 -- [] Standardize hitbox editor
+-- [] Implement sprite animations
+-- [] Separate player/enemy bullets
+  -- [] Unique sprites
+  -- [] Unique hitboxes
 
 --- Working
 -- [] Better Art
@@ -11,7 +15,7 @@
   -- [X] Implement support for 16x16 sprites
   -- [X] Support for mirror sprites in the X axis
   -- [] More readable bullet with outline
-  -- [] Implement sprite animations
+
 
 --- Done
 -- [X] Move to new input system

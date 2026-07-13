@@ -10,8 +10,9 @@
 
 sprites = {
     {0, 0, 8, 16, true, 8, 8}, -- 1) Player
-    {8, 0, 8, 16, true, 8, 8}, -- 2) Enemy1
-    {16, 0, 8, 16, true, 8, 8} -- 3) Enemy2
+    {8, 0, 8, 16, false, 4, 16}, -- 2) Player Bullet
+    {0, 16, 8, 16, true, 8, 8}, -- 3) Enemy1
+    {8, 16, 8, 16, true, 8, 8} -- 4) Enemy2
 }
 
 function _draw_sprite(index, x, y)
@@ -31,7 +32,7 @@ function _draw_sprite(index, x, y)
     )
 
     -- mirrorx
-    if sprite[4] then
+    if sprite[5] then
         sspr(
                 sprite[1],
                 sprite[2],

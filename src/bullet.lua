@@ -12,7 +12,11 @@ bullet = entity:new({
     end,
 
     draw = function(_ENV)
-        circfill(x,y,rad,clr)
+        if friendly then
+            _draw_sprite(2, x, y)
+        else
+            circfill(x,y,rad,clr)
+        end
     end
 })
 
