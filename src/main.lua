@@ -3,12 +3,14 @@
 -- [] Banking
 -- [] Enemy types (straight, zig-zag, homing)
   -- [] Enemy movement defined by speed and angle
+-- [] Standardize hitbox editor
 
 --- Working
 -- [] Better Art
-  -- [] Bigger 16x16 entity sprites
-  -- [] More readable bullet with outline
+  -- [X] Bigger 16x16 entity sprites
   -- [] Implement support for 16x16 sprites
+  -- [] Support for mirror sprites in the X/Y axis
+  -- [] More readable bullet with outline
   -- [] Implement sprite animations
 
 --- Done

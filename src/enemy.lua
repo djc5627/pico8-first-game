@@ -10,8 +10,7 @@ enemy = entity:new({
     end,
 
     draw = function(_ENV)
-        -- rectfill(x, y, x+8, y+8, 8)
-        spr(1, x, y, 1, 1, false, false)
+        _draw_sprite(2, x, y)
 
         -- draw hitbox for debugging
         if global.debug then

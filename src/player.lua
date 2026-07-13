@@ -89,7 +89,7 @@ function _update_player()
 end
 
 function _draw_player()
-    spr(0, p_x, p_y, 1, 1, false, false)
+    _draw_sprite(1, p_x, p_y)
     print("health: "..p_health, 8, 12, 7)
 end
 
