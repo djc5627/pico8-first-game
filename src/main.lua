@@ -1,8 +1,15 @@
 --- TODO
 -- [] Smooth out cardinal direction movement
+-- [] Banking
+-- [] Enemy types (straight, zig-zag, homing)
+  -- [] Enemy movement defined by speed and angle
 
 --- Working
--- [] Banking
+-- [] Better Art
+  -- [] Bigger 16x16 entity sprites
+  -- [] More readable bullet with outline
+  -- [] Implement support for 16x16 sprites
+  -- [] Implement sprite animations
 
 --- Done
 -- [X] Move to new input system
