@@ -10,7 +10,7 @@ sprites = {
 
 sprites = {
     {0, 0, 8, 16, true, 8, 8}, -- 1) Player
-    {8, 0, 8, 16, false, 4, 16}, -- 2) Player Bullet
+    {8, 0, 8, 16, false, 4, 8}, -- 2) Player Bullet
     {0, 16, 8, 16, true, 8, 8}, -- 3) Enemy1
     {8, 16, 8, 16, true, 8, 8}, -- 4) Enemy2
     {16, 16, 8, 8, false, 4, 4} -- 5) Enemy Bullet

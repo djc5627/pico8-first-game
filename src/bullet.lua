@@ -20,7 +20,7 @@ function _update_bullets(table)
         --todo update animation here
 
         if s.y<-16 or s.y > 136 then
-            del(arr,s)
+            del(table,s)
         end
     end
 end
@@ -29,7 +29,8 @@ function _draw_bullets(table)
     for b in all(table) do
         _draw_sprite(b.si, b.x, b.y)
         if debug then
-           rect(b.x-b.hw/2, b.y-b.hh/2, b.x+b.hw/2, b.y+b.hh/2, 7)
+            pset(b.x, b.y, 8)
+            rect(b.x-b.hw/2, b.y-b.hh/2, b.x+b.hw/2, b.y+b.hh/2, 7)
         end
     end
 end

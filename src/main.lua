@@ -31,7 +31,7 @@
 
 game_states = {"playing", "game_over"}
 state = "playing"
-debug = true
+debug = false
 
 
 function _init()
