@@ -22,36 +22,29 @@ enemy = entity:new({
     shoot = function(_ENV)
         if time() - last_shoot_time > shoot_delay then
             last_shoot_time = time()
-            local b = enmy_bullet:new({
-                x = x + width/2,
-                y = y + width,
-                dirx = 0,
-                diry = 1
-            })
             add(bullets, b)
+            _add_bullet(enemy_bullets, x, y + 8, 0, 1, 3, 3, 5)
         end
     end,
 
     handle_collisions = function(_ENV)
-        for bullet in all(bullets) do
+        for b in all(player_bullets) do
             local collided = false
-            if bullet.friendly then
-                collided = hit(
-                    bullet.x - bullet.rad,
-                    bullet.y - bullet.rad,
-                    bullet.rad * 2,
-                    bullet.rad * 2,
-                    x,
-                    y,
-                    width,
-                    width,
-                    bullet.x - bullet.rad + bullet.dirx * bullet.spd,
-                    bullet.y - bullet.rad + bullet.diry * bullet.spd
-                )
-                if collided then
-                    del(bullets, bullet)
-                    health -= 1
-                end
+            collided = hit(
+                b.x - b.hw/2,
+                b.y - b.hh/2,
+                b.hw,
+                b.hh,
+                x,
+                y,
+                width,
+                width,
+                b.x - b.hw/2 + b.spdx,
+                b.y - b.hh/2 + b.spdy
+            )
+            if collided then
+                del(player_bullets, b)
+                health -= 1
             end
         end
     end

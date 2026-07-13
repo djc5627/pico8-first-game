@@ -68,14 +68,7 @@ end
 function _shoot()
     -- Only shoot if delay has passed since the last shot
     if btn(4) and time() - p_last_shoot_time >= p_shoot_delay then
-        -- Create a new bullet.lua entity and add it to the bullets table
-        local new_bullet = bullet:new({
-            x = p_x + p_width / 2,
-            y = p_y,
-            dirx = 0,
-            diry = -1,
-        })
-        add(bullets, new_bullet)
+        _add_bullet(player_bullets, p_x, p_y - 8, 0, -4, 8, 16, 2)
         p_last_shoot_time = time()
         sfx(1)
      end
@@ -105,25 +98,23 @@ function _handle_player_death()
 end
 
 function _handle_player_collisions()
-    for bullet in all(bullets) do
+    for b in all(enemy_bullets) do
         local collided = false
-        if not bullet.friendly then
-            collided = hit(
-                bullet.x - bullet.rad,
-                bullet.y - bullet.rad,
-                bullet.rad * 2,
-                bullet.rad * 2,
-                p_x,
-                p_y,
-                p_width,
-                p_height,
-                bullet.x - bullet.rad + bullet.dirx * bullet.spd,
-                bullet.y - bullet.rad + bullet.diry * bullet.spd
-            )
-            if collided then
-                del(bullets, bullet)
-                p_health -= 1
-            end
+        collided = hit(
+            b.x - b.hw/2,
+            b.y - b.hh/2,
+            b.hw,
+            b.hh,
+            p_x,
+            p_y,
+            p_width,
+            p_height,
+            b.x - b.hw/2 + b.spdx,
+            b.y - b.hh/2 + b.spdy
+        )
+        if collided then
+            del(enemy_bullets, b)
+            p_health -= 1
         end
     end
 end

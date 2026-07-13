@@ -5,16 +5,10 @@
   -- [] Enemy movement defined by speed and angle
 -- [] Standardize hitbox editor
 -- [] Implement sprite animations
--- [] Separate player/enemy bullets
-  -- [] Unique sprites
-  -- [] Unique hitboxes
+-- [] Standardize method and var naming conventions
+
 
 --- Working
--- [] Better Art
-  -- [X] Bigger 16x16 entity sprites
-  -- [X] Implement support for 16x16 sprites
-  -- [X] Support for mirror sprites in the X axis
-  -- [] More readable bullet with outline
 
 
 --- Done
@@ -25,6 +19,14 @@
 -- [X] Pick a good movement speed
 -- [X] Rename vars to match casing conventions
 -- [X] Minimize hit.lua to ignore hit direction
+-- [X] Better Art
+  -- [X] Bigger 16x16 entity sprites
+  -- [X] Implement support for 16x16 sprites
+  -- [X] Support for mirror sprites in the X axis
+  -- [X] More readable bullet with outline
+-- [X] Separate player/enemy bullets
+  -- [X] Unique sprites
+  -- [X] Unique hitboxes
 
 game_states = {"playing", "game_over"}
 state = "playing"
@@ -51,7 +53,8 @@ function _update60()
         _update_stars()
         _update_player()
         _update_enemy_spawner()
-        _update_bullets()
+        _update_bullets(player_bullets)
+        _update_bullets(enemy_bullets)
     end
 end
 
@@ -75,7 +78,8 @@ function _draw()
     _draw_stars()
     _draw_player()
     _draw_enemy_spawner()
-    _draw_bullets()
+    _draw_bullets(player_bullets)
+    _draw_bullets(enemy_bullets)
 
     -- Set black as transparent
     palt(0, true)

@@ -1,46 +1,35 @@
-bullet = entity:new({
-    spd = 1.4,
-    dirx = 0,
-    diry = -1,
-    rad = 1,
-    clr = 10,
-    friendly = true,
+player_bullets = {}
+enemy_bullets = {}
 
-    update = function(_ENV)
-        x += spd * dirx
-        y += spd * diry
-    end,
+function _add_bullet(table, x, y, spdx, spdy, hw, hh, si)
+    add(table, {
+        x=x,
+        y=y,
+        spdx=spdx,
+        spdy=spdy,
+        hw=hw, --hitbox width
+        hh=hh, --hitbox height
+        si=si  --sprite index
+    })
+end
 
-    draw = function(_ENV)
-        if friendly then
-            _draw_sprite(2, x, y)
-        else
-            circfill(x,y,rad,clr)
-        end
-    end
-})
+function _update_bullets(table)
+    for s in all(table) do
+        s.x += s.spdx
+        s.y += s.spdy
+        --todo update animation here
 
-enmy_bullet = bullet:new({
-    friendly = false,
-    clr = 8,
-    diry = 1
-})
-
-function _update_bullets()
-    for bullet in all(bullets) do
-        bullet:update()
-        if bullet.y < -bullet.rad or bullet.y > 128 + bullet.rad then
-            del(bullets, bullet)
+        if s.y<-16 or s.y > 136 then
+            del(arr,s)
         end
     end
 end
 
-function _draw_bullets()
-    for bullet in all(bullets) do
-        bullet:draw()
-        -- draw hitbox for debugging
-        if global.debug then
-            rect(bullet.x - bullet.rad, bullet.y - bullet.rad, bullet.x + bullet.rad, bullet.y + bullet.rad, 7)
+function _draw_bullets(table)
+    for b in all(table) do
+        _draw_sprite(b.si, b.x, b.y)
+        if debug then
+           rect(b.x-b.hw/2, b.y-b.hh/2, b.x+b.hw/2, b.y+b.hh/2, 7)
         end
     end
 end
