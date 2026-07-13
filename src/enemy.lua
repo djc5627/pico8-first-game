@@ -1,33 +1,27 @@
-enemy = entity:new({
-    health = 3,
-    width = 8,
-    shoot_delay = 3,
-    last_shoot_time = 0,
+enemies = {}
 
-    update = function(_ENV)
-        handle_collisions(_ENV)
-        shoot(_ENV)
-    end,
+function _add_enemy(x, y, health, shoot_delay, hw, hh, si)
+    add(enemies, {
+        x=x,
+        y=y,
+        health=health,
+        shoot_delay=shoot_delay,
+        hw=hw, --hitbox width
+        hh=hh, --hitbox height
+        si=si,  --sprite index
+        last_shoot_time=0
+    })
+end
 
-    draw = function(_ENV)
-        _draw_sprite(3, x, y)
-
-        -- draw hitbox for debugging
-        if global.debug then
-            rect(x, y, x+width, y+width, 7)
+function _update_enemies()
+    for e in all(enemies) do
+        -- Shooting
+        if time() - e.last_shoot_time > e.shoot_delay then
+            e.last_shoot_time = time()
+            _add_bullet(enemy_bullets, e.x, e.y + 8, 0, 1, 3, 3, 5)
         end
-        pset(x, y, 8)
-    end,
 
-    shoot = function(_ENV)
-        if time() - last_shoot_time > shoot_delay then
-            last_shoot_time = time()
-            add(bullets, b)
-            _add_bullet(enemy_bullets, x, y + 8, 0, 1, 3, 3, 5)
-        end
-    end,
-
-    handle_collisions = function(_ENV)
+        -- Collisions
         for b in all(player_bullets) do
             local collided = false
             collided = hit(
@@ -35,17 +29,35 @@ enemy = entity:new({
                 b.y - b.hh/2,
                 b.hw,
                 b.hh,
-                x,
-                y,
-                width,
-                width,
+                e.x-e.hw,
+                e.y-e.hh,
+                e.hw,
+                e.hh,
                 b.x - b.hw/2 + b.spdx,
                 b.y - b.hh/2 + b.spdy
             )
             if collided then
                 del(player_bullets, b)
-                health -= 1
+                e.health -= 1
             end
         end
+
+        -- Death
+        if e.health <= 0 then
+            del(enemies, e)
+            global.score += 1
+            sfx(0)
+        end
     end
-})
+end
+
+function _draw_enemies()
+    for e in all(enemies) do
+        _draw_sprite(e.si, e.x, e.y)
+            -- draw hitbox for debugging
+            if global.debug then
+                rect(e.x-e.hw/2, e.y-e.hh/2, e.x+e.hw/2, e.y+e.hh/2, 7)
+                pset(e.x, e.y, 8)
+            end
+    end
+end

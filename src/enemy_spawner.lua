@@ -1,40 +1,22 @@
 function _init_enemy_spawner()
-    -- Initialize enemy spawner properties
-    enemy_spawner = {
-        spawn_rate = 2, -- seconds between spawns
-        last_spawn_time = time(),
-        enemies = {},
-        max_enemies = 10
-    }
+    e_spawn_rate = 2 -- seconds between spawns
+    last_enemy_spawn_time = time()
+    max_enemies = 10
 end
 
 function _update_enemy_spawner()
     -- Check if it's time to spawn a new enemy
-    if #enemy_spawner.enemies < enemy_spawner.max_enemies and
-        time() - enemy_spawner.last_spawn_time >= enemy_spawner.spawn_rate then
-        local new_enemy = enemy:new({
-            x = flr(rnd(128)),
-            y = flr(rnd(20)) + 20,
-        })
-        add(enemy_spawner.enemies, new_enemy)
-        enemy_spawner.last_spawn_time = time()
-    end
-
-    -- Update existing enemies
-    for enemy in all(enemy_spawner.enemies) do
-        enemy:update()
-
-        if enemy.health <= 0 then
-            del(enemy_spawner.enemies, enemy)
-            global.score += 1
-            sfx(0)
-        end
-    end
-end
-
-function _draw_enemy_spawner()
-    -- Draw all enemies
-    for enemy in all(enemy_spawner.enemies) do
-        enemy:draw()
+    if #enemies < max_enemies and
+        time() - last_enemy_spawn_time >= e_spawn_rate then
+        _add_enemy(
+            flr(rnd(128)),
+            flr(rnd(20)) + 20,
+            10,
+            3,
+            14,
+            14,
+            3
+        )
+        last_enemy_spawn_time = time()
     end
 end

@@ -10,7 +10,6 @@
 
 --- Working
 
-
 --- Done
 -- [X] Move to new input system
 -- [X] Fix cobblestoning on player (enemies too?)
@@ -27,6 +26,8 @@
 -- [X] Separate player/enemy bullets
   -- [X] Unique sprites
   -- [X] Unique hitboxes
+-- [X] Center player hitbox
+-- [X] Center enemy hitbox
 
 game_states = {"playing", "game_over"}
 state = "playing"
@@ -53,6 +54,7 @@ function _update60()
         _update_stars()
         _update_player()
         _update_enemy_spawner()
+        _update_enemies()
         _update_bullets(player_bullets)
         _update_bullets(enemy_bullets)
     end
@@ -77,7 +79,7 @@ function _draw()
 
     _draw_stars()
     _draw_player()
-    _draw_enemy_spawner()
+    _draw_enemies()
     _draw_bullets(player_bullets)
     _draw_bullets(enemy_bullets)
 
