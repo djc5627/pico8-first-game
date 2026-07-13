@@ -16,6 +16,7 @@ enemy = entity:new({
         if global.debug then
             rect(x, y, x+width, y+width, 7)
         end
+        pset(x, y, 8)
     end,
 
     shoot = function(_ENV)

@@ -9,9 +9,9 @@
 --]]
 
 sprites = {
-    {0, 0, 8, 16, true}, -- 1) Player
-    {8, 0, 8, 16, true}, -- 2) Enemy1
-    {16, 0, 8, 16, true} -- 3) Enemy2
+    {0, 0, 8, 16, true, 8, 8}, -- 1) Player
+    {8, 0, 8, 16, true, 8, 8}, -- 2) Enemy1
+    {16, 0, 8, 16, true, 8, 8} -- 3) Enemy2
 }
 
 function _draw_sprite(index, x, y)
@@ -22,8 +22,8 @@ function _draw_sprite(index, x, y)
         sprite[2],
         sprite[3],
         sprite[4],
-        x,
-        y,
+        x - sprite[6],
+        y - sprite[7],
         sprite[3],
         sprite[4],
         false,
@@ -37,8 +37,8 @@ function _draw_sprite(index, x, y)
                 sprite[2],
                 sprite[3],
                 sprite[4],
-                x + sprite[3],
-                y,
+                x  - sprite[6] + sprite[3],
+                y - sprite[7],
                 sprite[3],
                 sprite[4],
                 true,

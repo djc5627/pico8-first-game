@@ -92,6 +92,9 @@ function _draw_player()
     _draw_sprite(1, p_x, p_y)
     print("health: "..p_health, 8, 12, 7)
     pset(p_x, p_y, 8)
+    if global.debug then
+        rect(p_x, p_y, p_x+p_width, p_y+p_height, 7)
+    end
 end
 
 function _handle_player_death()
