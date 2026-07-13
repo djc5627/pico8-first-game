@@ -35,8 +35,8 @@ dirx={-1,1,0,0,-0.75,0.75,0.75,-0.75}
 diry={0,0,-1,1,-0.75,-0.75,0.75,0.75}
 
 p_speed = 1.4
-p_width = 8
-p_height = 8
+p_hw = 8 -- hitbox width
+p_hh = 8 -- hitbox height
 p_shoot_delay = 0.2
 p_last_shoot_time = 0
 p_last_dir = 0
@@ -87,7 +87,7 @@ function _draw_player()
     print("health: "..p_health, 8, 12, 7)
     pset(p_x, p_y, 8)
     if global.debug then
-        rect(p_x, p_y, p_x+p_width, p_y+p_height, 7)
+        rect(p_x-p_hw/2, p_y-p_hh/2, p_x+p_hw/2, p_y+p_hh/2, 7)
     end
 end
 
@@ -106,10 +106,10 @@ function _handle_player_collisions()
             b.y - b.hh/2,
             b.hw,
             b.hh,
-            p_x,
-            p_y,
-            p_width,
-            p_height,
+            p_x-p_hw/2,
+            p_y-p_hh/2,
+            p_hw,
+            p_hh,
             b.x - b.hw/2 + b.spdx,
             b.y - b.hh/2 + b.spdy
         )
