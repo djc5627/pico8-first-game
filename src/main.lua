@@ -8,8 +8,8 @@
 --- Working
 -- [] Better Art
   -- [X] Bigger 16x16 entity sprites
-  -- [] Implement support for 16x16 sprites
-  -- [] Support for mirror sprites in the X/Y axis
+  -- [X] Implement support for 16x16 sprites
+  -- [X] Support for mirror sprites in the X axis
   -- [] More readable bullet with outline
   -- [] Implement sprite animations
 

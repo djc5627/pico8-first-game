@@ -91,6 +91,7 @@ end
 function _draw_player()
     _draw_sprite(1, p_x, p_y)
     print("health: "..p_health, 8, 12, 7)
+    pset(p_x, p_y, 8)
 end
 
 function _handle_player_death()
