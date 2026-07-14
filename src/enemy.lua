@@ -9,7 +9,8 @@ function _add_enemy(x, y, health, shoot_delay, hw, hh, si)
         hw=hw, --hitbox width
         hh=hh, --hitbox height
         si=si,  --sprite index
-        last_shoot_time=0
+        last_shoot_time=0,
+        flash_frames=0
     })
 end
 
@@ -39,13 +40,18 @@ function _update_enemies()
             if collided then
                 del(player_bullets, b)
                 e.health -= 1
+                e.flash_frames = 6
             end
+        end
+
+        if e.flash_frames > 0 then
+            e.flash_frames -= 1
         end
 
         -- Death
         if e.health <= 0 then
             del(enemies, e)
-            global.score += 1
+            score = score + 1
             sfx(0)
         end
     end
@@ -53,9 +59,19 @@ end
 
 function _draw_enemies()
     for e in all(enemies) do
+        if e.flash_frames > 0 then
+            for i=1,15 do
+                pal(i, 8)
+            end
+        end
+
         _draw_sprite(e.si, e.x, e.y)
+
+        if e.flash_frames > 0 then
+            pal()
+        end
             -- draw hitbox for debugging
-            if global.debug then
+            if debug then
                 rect(e.x-e.hw/2, e.y-e.hh/2, e.x+e.hw/2, e.y+e.hh/2, 7)
                 pset(e.x, e.y, 8)
             end

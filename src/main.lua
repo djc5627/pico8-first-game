@@ -6,7 +6,9 @@
 -- [] Standardize hitbox editor
 -- [] Implement sprite animations
 -- [] Standardize method and var naming conventions
-
+-- [] Particles Enhancements
+  -- [] Add muzzle flash
+  -- [] Add splat particles
 
 --- Working
 

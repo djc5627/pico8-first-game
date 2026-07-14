@@ -45,7 +45,7 @@ p_last_dir = 0
 function _init_player()
     p_health = 3
     p_x = 63
-    p_y = 63
+    p_y = 113
     p_last_dir = 0
 end
 
@@ -68,8 +68,8 @@ end
 function _shoot()
     -- Only shoot if delay has passed since the last shot
     if btn(4) and time() - p_last_shoot_time >= p_shoot_delay then
-        _add_bullet(player_bullets, p_x-4, p_y - 4, 0, -2, 8, 16, 2)
-        _add_bullet(player_bullets, p_x+4, p_y - 4, 0, -2, 8, 16, 2)
+        _add_bullet(player_bullets, p_x-4, p_y - 4, 0, -15, 8, 16, 2)
+        _add_bullet(player_bullets, p_x+4, p_y - 4, 0, -15, 8, 16, 2)
         p_last_shoot_time = time()
         sfx(1)
      end
