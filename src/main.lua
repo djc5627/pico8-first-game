@@ -15,14 +15,14 @@
  -- [] Enemy hit sound
 
 --- Working
--- [] Implement sprite animations
-  -- [X] Bullet animations
-  -- [] Enemy animations
 -- [] Implement particle system
   -- [] Muzzle flash Sprite particle (Plock to attach to player)
   -- [] Splash particles sprite
   -- [] Spark particle using lines
   -- [] Blob particle
+-- [] Implement sprite animations
+  -- [X] Bullet animations
+  -- [] Enemy animations
 
 --- Done
 -- [X] Move to new input system

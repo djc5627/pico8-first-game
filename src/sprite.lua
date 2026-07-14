@@ -16,6 +16,10 @@ sprites = {
     {16, 16, 8, 8, false, 4, 4}, -- 5) Enemy Bullet
     {12, 0, 3, 16, true, 3, 8}, -- 6) Player Bullet 2
     {15, 0, 2, 16, true, 2, 8}, -- 7) Player Bullet 3
+    {17, 0, 6, 16, true, 6, 8}, -- 8) Muzzle flash 1
+    {23, 0, 7, 16, true, 7, 8}, -- 8) Muzzle flash 2
+    {30, 0, 8, 16, true, 8, 8}, -- 8) Muzzle flash 3
+    {38, 0, 8, 16, true, 8, 8} -- 8) Muzzle flash 4
 }
 
 function _draw_sprite(index, x, y)
