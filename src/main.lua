@@ -9,6 +9,11 @@
 -- [] Particles Enhancements
   -- [] Add muzzle flash
   -- [] Add splat particles
+  -- [] Death explosion
+-- [] Better Sounds
+ -- [] Shoot sound
+ -- [] Player hit sound
+ -- [] Enemy hit sound
 
 --- Working
 
