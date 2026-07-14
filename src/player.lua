@@ -37,8 +37,9 @@ diry={0,0,-1,1,-0.75,-0.75,0.75,0.75}
 p_speed = 1.4
 p_hw = 8 -- hitbox width
 p_hh = 8 -- hitbox height
-p_shoot_delay = 0.2
-p_last_shoot_time = 0
+p_shoot_speed = -4
+p_shoot_delay = 5
+p_last_shoot_frame = 0
 p_last_dir = 0
 
 
@@ -67,10 +68,10 @@ end
 
 function _shoot()
     -- Only shoot if delay has passed since the last shot
-    if btn(4) and time() - p_last_shoot_time >= p_shoot_delay then
-        _add_bullet(player_bullets, p_x-4, p_y - 4, 0, -15, 8, 16, 2)
-        _add_bullet(player_bullets, p_x+4, p_y - 4, 0, -15, 8, 16, 2)
-        p_last_shoot_time = time()
+    if btn(4) and T - p_last_shoot_frame >= p_shoot_delay then
+        _add_player_bullet( p_x-4, p_y - 4, 0, p_shoot_speed, 8, 16)
+        _add_player_bullet( p_x+4, p_y - 4, 0, p_shoot_speed, 8, 16)
+        p_last_shoot_frame = T
         sfx(1)
      end
 end

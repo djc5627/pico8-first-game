@@ -13,7 +13,9 @@ sprites = {
     {8, 0, 4, 16, true, 4, 8}, -- 2) Player Bullet
     {0, 16, 8, 16, true, 8, 8}, -- 3) Enemy1
     {8, 16, 8, 16, true, 8, 8}, -- 4) Enemy2
-    {16, 16, 8, 8, false, 4, 4} -- 5) Enemy Bullet
+    {16, 16, 8, 8, false, 4, 4}, -- 5) Enemy Bullet
+    {12, 0, 3, 16, true, 3, 8}, -- 6) Player Bullet 2
+    {15, 0, 2, 16, true, 2, 8}, -- 7) Player Bullet 3
 }
 
 function _draw_sprite(index, x, y)
@@ -47,4 +49,9 @@ function _draw_sprite(index, x, y)
                 false
             )
     end
+end
+
+-- Wrapper to draw sprite that is animated
+function _draw_sprite_anim(obj)
+    _draw_sprite(cyc(obj.age, obj.anis, obj.ani), obj.x, obj.y)
 end

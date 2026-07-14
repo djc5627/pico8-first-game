@@ -16,7 +16,7 @@
 
 --- Working
 -- [] Implement sprite animations
-  -- [] Bullet animations
+  -- [X] Bullet animations
   -- [] Enemy animations
 -- [] Implement particle system
   -- [] Muzzle flash Sprite particle (Plock to attach to player)
@@ -46,6 +46,7 @@
 game_states = {"playing", "game_over"}
 state = "playing"
 debug = false
+T=0     --global frame counter
 
 
 function _init()
@@ -57,6 +58,7 @@ function _init()
 end
 
 function _update60()
+    T+=1
     -- Restart Game when over
     if state == "game_over" then
         if btnp(4) or btnp(5) then

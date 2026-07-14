@@ -19,7 +19,7 @@ function _update_enemies()
         -- Shooting
         if time() - e.last_shoot_time > e.shoot_delay then
             e.last_shoot_time = time()
-            _add_bullet(enemy_bullets, e.x, e.y + 8, 0, 1, 3, 3, 5)
+            _add_enemy_bullet(e.x, e.y + 8, 0, 1, 3, 3)
         end
 
         -- Collisions
