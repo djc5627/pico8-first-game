@@ -4,7 +4,6 @@
 -- [] Enemy types (straight, zig-zag, homing)
   -- [] Enemy movement defined by speed and angle
 -- [] Standardize hitbox editor
--- [] Implement sprite animations
 -- [] Standardize method and var naming conventions
 -- [] Particles Enhancements
   -- [] Add muzzle flash
@@ -16,6 +15,14 @@
  -- [] Enemy hit sound
 
 --- Working
+-- [] Implement sprite animations
+  -- [] Bullet animations
+  -- [] Enemy animations
+-- [] Implement particle system
+  -- [] Muzzle flash Sprite particle (Plock to attach to player)
+  -- [] Splash particles sprite
+  -- [] Spark particle using lines
+  -- [] Blob particle
 
 --- Done
 -- [X] Move to new input system
