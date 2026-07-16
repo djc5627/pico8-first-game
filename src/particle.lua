@@ -1,4 +1,4 @@
-sprites={}
+particle_sprites={}
 function _update_sprites()
 
 end

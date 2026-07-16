@@ -25,6 +25,8 @@ For linux might need to use the following:
 
 ### Export
 ```pico8 ./first_game.p8 -export firstgame.p8.png```
+For linux might need to use the following:
+```pico8_dyn ./first_game.p8 -export firstgame.p8.png```
 
 ### Deploy
 ```./deploy.sh```
